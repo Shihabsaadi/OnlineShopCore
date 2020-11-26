@@ -1,0 +1,43 @@
+﻿@model IEnumerable<OnlineShop.Models.Products>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-info">Products</h2>
+        <table class="table table-responsive  table-hover table-bordered">
+            <tr class="bg-info">
+                <th>@Html.DisplayNameFor(x => x.Product)</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th width="1%"><a class="btn btn-success" asp-action="Create"><i class="glyphicon glyphicon-plus"></i> @Html.DisplayNameFor(x => x.Product)</a></th>
+            </tr>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.Product</td>
+                    <td>@item.Price</td>
+                    <td>@item.IsAvailable</td>
+                    <td><partial name="_ButtonPartial" model="item.Id" /></td>
+                </tr>
+                }
+            }
+
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var message = '@TempData["save"]';
+            if (message != "") {
+                alertify.success(message)
+            }
+        })
+    </script>
+}

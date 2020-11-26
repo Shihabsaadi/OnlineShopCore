@@ -1,0 +1,60 @@
+﻿@model OnlineShop.Models.Products
+@{
+    ViewData["Title"] = "Create";
+}
+<h2 class="text-info">Details @Model.Product</h2>
+<form>
+    <div>
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        <div class="col-5">
+            <input asp-for="Id" class="form-control" type="hidden">
+        </div>
+        <div>
+            <img src="~/@Model.Image" style="width:100px;height:100px" />
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Product"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Product" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Price"></label>
+            </div>
+            <div class="col-5">
+                <input type="number" asp-for="Price" class="form-control" min="0" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ProductTypeId"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="ProductTypeId" asp-items="ViewBag.productTypeId" class="form-control" disabled></select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="IsAvailable"></label>
+            </div>
+            <div class="col-5">
+                <input type="checkbox" asp-for="IsAvailable" class="" disabled>
+            </div>
+        </div>
+        <div class="form-group pull-right">
+            <a asp-action="Edit" asp-controller="Product" class="btn btn-primary" asp-route-id="@Model.Id">Edit</a>
+            <a asp-action="Index" class="btn btn-success">Back To List </a>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");}
+}
+
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@

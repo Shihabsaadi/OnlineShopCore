@@ -1,0 +1,34 @@
+﻿@model OnlineShop.Models.ProductTypes
+@{
+    ViewData["Title"] = "Create";
+}
+<h2 class="text-info">Create @Html.DisplayNameFor(x => x.ProductType)</h2>
+<form asp-action="Edit" method="post">
+    <div>
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        <div class="col-5">
+            <input asp-for="Id" class="form-control" type="hidden">
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ProductType"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ProductType" class="form-control">
+            </div>
+            <span asp-validation-for="ProductType" class="text-danger"></span>
+        </div>
+        <div class="form-group pull-right">
+            <input type="submit" class="btn btn-primary" value="Save" />
+            <a asp-action="Index" class="btn btn-success">Back To List </a>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");}
+}
+
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@

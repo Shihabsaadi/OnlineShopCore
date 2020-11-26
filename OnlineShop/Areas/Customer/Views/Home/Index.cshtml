@@ -1,0 +1,35 @@
+﻿@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<Products>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-info">Products</h2>
+        <table class="table table-responsive  table-hover table-bordered">
+            <tr class="bg-info">
+                <th>Name</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Product</td>
+                        <td>@item.Price</td>
+                        <td>@item.IsAvailable</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>
+<div>
+    @Html.PagedListPager(Model,x=>Href("~/Customer/Home/Index?page="+x))
+</div>
+@section scripts{
+
+}
